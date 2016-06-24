@@ -1,5 +1,5 @@
 /**
- * include/graphics.h - wiibrew-js
+ * include/graphics.h - wiibrewjs
  * Copyright (C) 2016 Karim Alibhai.
  */
 

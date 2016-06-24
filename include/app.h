@@ -1,5 +1,5 @@
 /**
- * include/app.h - wiibrew-js
+ * include/app.h - wiibrewjs
  * Copyright (C) 2016 Karim Alibhai.
  */
 

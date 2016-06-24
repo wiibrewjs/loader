@@ -1,5 +1,5 @@
 /**
- * src/wiimote.c - wiibrew-js
+ * src/wiimote.c - wiibrewjs
  * Copyright (C) 2016 Karim Alibhai.
  */
 

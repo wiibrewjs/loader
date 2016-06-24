@@ -1,5 +1,5 @@
 /**
- * src/server.c - wiibrew-js
+ * src/server.c - wiibrewjs
  * Copyright (C) 2016 Karim Alibhai.
  */
 

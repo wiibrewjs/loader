@@ -1,5 +1,5 @@
 /**
- * include/wiimote.h - wiibrew-js
+ * include/wiimote.h - wiibrewjs
  * Copyright (C) 2016 Karim Alibhai.
  */
 
