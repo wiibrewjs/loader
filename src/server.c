@@ -3,6 +3,7 @@
  * Copyright (C) 2016 Karim Alibhai.
  */
 
+#include "app.h"
 #include "server.h"
 
 static lwp_t server_handle = (lwp_t) NULL;
@@ -26,8 +27,9 @@ void server_init() {
 void *server_run(void* arg) {
     int erno;
 
-    double size;
-    char sizebuffer[ 8 ];
+    int method, size;
+    char methodbuffer[ 4 ];
+    char sizebuffer[ 4 ];
 
     s32 _server;
     s32 _socket;
@@ -80,18 +82,40 @@ void *server_run(void* arg) {
         return NULL;
     }
 
+    printf("%d\n", sizeof(int));
     // converse with the client
     while ( TRUE ) {
-        // first we receive the size of the incoming packet
-        memset( sizebuffer, 0, 8 );
-        if ( net_recv( _socket, sizebuffer, 8, 0 ) != 8 ) {
-            printf( "Error: Expected to read 8 bytes." );
+        // first we receive the method of the incoming packet
+        memset( methodbuffer, 0, 4 );
+        if ( net_recv( _socket, methodbuffer, 4, 0 ) != 4 ) {
+            printf( "Error: Expected to read 4 bytes." );
             break;
         }
-        memcpy( &size, sizebuffer, 8 );
+        memcpy( &method, methodbuffer, 4 );
+
+        printf("Method: %d\n", method);
+
+        // first we receive the size of the incoming packet
+        memset( sizebuffer, 0, 4 );
+        if ( net_recv( _socket, sizebuffer, 4, 0 ) != 4 ) {
+            printf( "Error: Expected to read 4 bytes." );
+            break;
+        }
+        memcpy( &size, sizebuffer, 4 );
 
         // ...
-        printf("Preparing to read %f bytes ...\n", size);
+        printf("Payload size: %d bytes\n", size);
+        char data[size];
+
+        memset( data, 0, size );
+        if ( net_recv( _socket, data, size, 0 ) != size ) {
+            printf( "Error: Expected to read %d bytes.", size );
+            break;
+        }
+
+        // ...
+        printf("Data: %s\n", data);
+        app_data_recv(method, size, &data);
     }
 
     return NULL;

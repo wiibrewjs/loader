@@ -20,5 +20,6 @@
 void app_init();
 int app_sync();
 void app_quit();
+void app_data_recv(int method, int size, char* data);
 
 #endif
