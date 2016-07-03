@@ -115,7 +115,7 @@ void *server_run(void* arg) {
 
         // ...
         printf("Data: %s\n", data);
-        app_data_recv(method, size, &data);
+        app_data_recv(method, size, data);
     }
 
     return NULL;

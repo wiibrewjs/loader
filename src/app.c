@@ -21,13 +21,10 @@ int app_sync() {
 }
 
 void app_data_recv(int method, int size, char* data) {
-    switch ( method ) {
-        case 0x01:
-        printf("%s\n", data);
-        break;
-
-        default:
-        break;
+    if ( method == 0 ) {
+        // TODO: load asset
+    } else {
+        methods[method - 1](size, data);
     }
 }
 

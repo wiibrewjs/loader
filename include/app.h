@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include "server.h"
+#include "methods.h"
 #include "wiimote.h"
 #include "graphics.h"
 
